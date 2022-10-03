@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,10 @@ Route::get('/', function () {
     return 'hello';
 });
 
-Route::get('/my_page', function () {
-   return 'this is my page';
+Route::get('/my_page', [\App\Http\Controllers\MyPlaceController::class, 'index']);
+
+Route::get('/my_name', [\App\Http\Controllers\MyNameController::class, 'index']);
+
+Route::get('/my_cap_color', function () {
+   return 'pink';
 });
