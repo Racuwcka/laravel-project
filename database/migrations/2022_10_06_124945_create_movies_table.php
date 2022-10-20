@@ -22,6 +22,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('rating');
             $table->unsignedTinyInteger('your_rating');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
