@@ -18,11 +18,19 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('image')->nullable();
+
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->index('category_id', 'post_category_idx');
+            $table->foreign('category_id', 'post_category_fk')->references('id')->on('categories');
+
             $table->unsignedBigInteger('likes')->nullable();
             $table->boolean('is_published')->default(1);
             $table->timestamps();
 
             $table->softDeletes();
+
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_general_ci';
         });
     }
 
