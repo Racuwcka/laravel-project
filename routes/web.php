@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Post\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\MovieController;
@@ -24,13 +25,16 @@ Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->n
 Route::get('/contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 
 /* CRUD Posts */
-Route::get('/posts', [PostController::class, 'index'])->name('post.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
-Route::post('/posts', [PostController::class, 'store'])->name('post.store');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
-Route::patch('/posts/{post}', [PostController::class, 'update'])->name('post.update');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.delete');
+Route::group(['namespace' => 'App\Http\Controllers\Post'], function() {
+    Route::get('/posts', 'IndexController')->name('post.index');
+    Route::get('/posts/create', 'CreateController')->name('post.create');
+    Route::post('/posts', 'StoreController')->name('post.store');
+    Route::get('/posts/{post}', 'ShowController')->name('post.show');
+    Route::get('/posts/{post}/edit', 'EditController')->name('post.edit');
+    Route::patch('/posts/{post}', 'UpdateController')->name('post.update');
+    Route::delete('/posts/{post}', 'DestroyController')->name('post.delete');
+});
+
 
 /* CRUD Movies */
 Route::get('/movies', [MovieController::class, 'index'])->name('movie.index');
