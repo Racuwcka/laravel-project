@@ -31,6 +31,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about.index') }}" tabindex="-1" aria-disabled="true">About</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.index') }}" tabindex="-1" aria-disabled="true">Admin Panel</a>
+                        </li>
                     </ul>
                 </div>
             </div>

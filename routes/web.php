@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-//    return view('welcome');
-    return 'hello';
-});
+Route::get('/', '\App\Http\Controllers\MainController')->name('main.index');
 
 //Route::get('/main', [\App\Http\Controllers\MainController::class, 'index'])->name('main.index');
 Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about.index');
@@ -36,6 +33,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Post'], function() {
 
 /* Admin Panel */
 Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function() {
+    Route::get('/', 'IndexController')->name('admin.index');
     Route::group(['namespace' => 'Post'], function() {
         Route::get('/post', 'IndexController')->name('admin.post.index');
     });
