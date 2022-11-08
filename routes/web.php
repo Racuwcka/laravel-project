@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\Post\IndexController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\MovieController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +19,7 @@ Route::get('/', function () {
     return 'hello';
 });
 
-Route::get('/main', [\App\Http\Controllers\MainController::class, 'index'])->name('main.index');
+//Route::get('/main', [\App\Http\Controllers\MainController::class, 'index'])->name('main.index');
 Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about.index');
 Route::get('/contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
 
@@ -35,6 +34,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Post'], function() {
     Route::delete('/posts/{post}', 'DestroyController')->name('post.delete');
 });
 
+/* Admin Panel */
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function() {
+    Route::group(['namespace' => 'Post'], function() {
+        Route::get('/post', 'IndexController')->name('admin.post.index');
+    });
+});
 
 /* CRUD Movies */
 Route::get('/movies', [MovieController::class, 'index'])->name('movie.index');
