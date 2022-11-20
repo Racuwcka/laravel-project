@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Category;
+use App\Models\Movie;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
@@ -17,14 +18,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Category::factory(10)->create();
-        $tags = Tag::factory(10)->create();
-        $posts = Post::factory(100)->create();
+        Movie::factory(10)->create();
 
-        foreach ($posts as $post) {
-            $tagsIds = $tags->random(5)->pluck('id');
-            $post->tags()->attach($tagsIds);
-        }
+//        Category::factory(10)->create();
+//        $tags = Tag::factory(10)->create();
+//        $posts = Post::factory(100)->create();
+//
+//        foreach ($posts as $post) {
+//            $tagsIds = $tags->random(5)->pluck('id');
+//            $post->tags()->attach($tagsIds);
+//        }
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
